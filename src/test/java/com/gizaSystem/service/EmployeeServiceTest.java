@@ -67,10 +67,9 @@ public class EmployeeServiceTest {
         EmployeeSetterDto employeeSetterDto = new EmployeeSetterDto();
 
 //        when(employeeRepoMock.save(any(Employee.class))).thenReturn(employee);
+       doNothing().when(employeeService).validateEmployeeData(employeeSetterDto,-1);
 
         doReturn(employee).when(employeeRepoMock).save(any(Employee.class));
-
-//        doNothing().when(employeeService).validateEmployeeData(employeeSetterDto,-1);
 
         assertEquals(employeeService.createEmployee(employeeSetterDto),1);
     }
@@ -108,6 +107,7 @@ public class EmployeeServiceTest {
 
     @Test
     void delete_employee_successfully() {
+        
         // Arrange
         Employee employee = new Employee(1, "marwa", "marwa@gmail.com", 25, 20_000);
 
